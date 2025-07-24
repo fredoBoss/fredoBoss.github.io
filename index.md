@@ -1,7 +1,7 @@
 ---
 layout: default
 ---
-# Fredo Boss - Data Annotator
+# Alfredo P. Vitangcor Jr - Data Annotator
 
 Welcome to my portfolio! I specialize in high-quality data annotation for AI models. Explore my projects below.
 
