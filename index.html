@@ -1,0 +1,296 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Fredo, Python and Django developer in Davao del Norte, Philippines. Computer vision, IoT and web systems.">
+<title>Fredo Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: a single narrow column read like a machine spec sheet; projects as labelled spec blocks, small builds as a parts list. */
+:root {
+  --bg: #f3f5f2;
+  --surface: #ffffff;
+  --fg: #17211b;
+  --muted: #56645b;
+  --line: #d5ddd6;
+  --leaf: #2f6b45;
+  --ripe: #e3b52a;
+  --ripe-ink: #5a4300;
+  --display: "Big Shoulders Display", "Arial Narrow", Impact, sans-serif;
+  --body: "IBM Plex Sans", "Segoe UI", Roboto, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #111713; --surface: #18201b; --fg: #e6ece7; --muted: #9aa99f;
+    --line: #2b362f; --leaf: #7cc596; --ripe: #e9c24a; --ripe-ink: #1a1400;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #111713; --surface: #18201b; --fg: #e6ece7; --muted: #9aa99f;
+  --line: #2b362f; --leaf: #7cc596; --ripe: #e9c24a; --ripe-ink: #1a1400;
+  color-scheme: dark;
+}
+*, *::before, *::after { box-sizing: border-box; }
+img { max-width: 100%; }
+body { margin: 0; background: var(--bg); color: var(--fg); font: 16px/1.6 var(--body); }
+.wrap { max-width: 920px; margin: 0 auto; padding-inline: 20px; padding-block: 48px 72px; display: grid; gap: 72px; }
+a { color: var(--leaf); text-underline-offset: 3px; }
+a:focus-visible { outline: 2px solid var(--leaf); outline-offset: 3px; border-radius: 2px; }
+h1, h2, h3 { font-family: var(--display); text-wrap: balance; margin: 0; line-height: 1.02; }
+p { margin: 0; max-width: 65ch; }
+.label { font: 500 12px/1.4 var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+
+/* hero */
+header { display: grid; gap: 22px; }
+.who { display: flex; flex-wrap: wrap; gap: 8px 18px; align-items: center; }
+.avail { display: inline-flex; align-items: center; gap: 8px; font: 500 13px var(--mono); color: var(--leaf); }
+.avail::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--leaf); }
+h1 { font-size: clamp(44px, 9vw, 88px); font-weight: 800; letter-spacing: -.01em; text-transform: uppercase; }
+h1 em { font-style: normal; color: var(--leaf); }
+.lede { font-size: 19px; color: var(--muted); }
+.cta { display: flex; flex-wrap: wrap; gap: 12px; }
+.btn { display: inline-flex; align-items: center; gap: 8px; padding: 11px 18px; border-radius: 6px; font-weight: 600; text-decoration: none; border: 1.5px solid var(--fg); color: var(--fg); }
+.btn.primary { background: var(--fg); color: var(--bg); }
+.btn:hover { border-color: var(--leaf); }
+
+/* grade strip */
+.grades { display: flex; flex-wrap: wrap; gap: 6px; }
+.grades span { font: 500 12px var(--mono); padding: 3px 8px; border: 1px solid var(--line); border-radius: 4px; color: var(--muted); }
+
+/* sections */
+section { display: grid; gap: 28px; }
+section > h2 { font-size: clamp(30px, 5vw, 42px); font-weight: 800; text-transform: uppercase; }
+.sechead { display: grid; gap: 8px; }
+
+/* services */
+.services { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 0; border-top: 2px solid var(--fg); }
+.svc { padding: 20px 20px 22px 0; display: grid; gap: 10px; align-content: start; min-width: 0; }
+.svc + .svc { border-left: 1px solid var(--line); padding-left: 20px; }
+.svc h3 { font-size: 24px; font-weight: 600; }
+.svc p { color: var(--muted); font-size: 15px; }
+.tools { font: 13px/1.6 var(--mono); color: var(--fg); }
+@media (max-width: 760px) {
+  .svc, .svc + .svc { border-left: 0; padding-left: 0; border-bottom: 1px solid var(--line); }
+}
+
+/* projects */
+.project { display: grid; grid-template-columns: 1fr; gap: 20px; background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 24px; }
+.project.feature { grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr); align-items: start; }
+@media (max-width: 760px) { .project.feature { grid-template-columns: 1fr; } }
+.ptop { display: flex; flex-wrap: wrap; gap: 8px 12px; align-items: baseline; }
+.project h3 { font-size: 32px; font-weight: 800; text-transform: uppercase; }
+.status { font: 500 11px var(--mono); letter-spacing: .06em; text-transform: uppercase; padding: 3px 8px; border-radius: 99px; background: var(--ripe); color: var(--ripe-ink); }
+.status.done { background: transparent; color: var(--leaf); border: 1px solid var(--leaf); }
+.status.private { background: transparent; color: var(--muted); border: 1px solid var(--line); }
+.pbody { display: grid; gap: 14px; min-width: 0; }
+.pbody > p { color: var(--muted); }
+.spec { display: grid; grid-template-columns: max-content 1fr; gap: 6px 16px; margin: 0; font-size: 14px; }
+.spec dt { font: 500 12px/1.9 var(--mono); text-transform: uppercase; letter-spacing: .06em; color: var(--muted); }
+.spec dd { margin: 0; min-width: 0; }
+.links { display: flex; flex-wrap: wrap; gap: 6px 16px; font: 14px var(--mono); }
+figure { margin: 0; display: grid; gap: 8px; }
+figure img { width: 100%; border-radius: 6px; border: 1px solid var(--line); display: block; }
+figcaption { font: 12px var(--mono); color: var(--muted); }
+.plist { display: grid; gap: 20px; }
+
+/* parts list */
+.parts { border-top: 2px solid var(--fg); }
+.part { display: grid; grid-template-columns: 180px minmax(0, 1fr) auto; gap: 6px 20px; padding: 14px 0; border-bottom: 1px solid var(--line); align-items: baseline; }
+.part strong { font-family: var(--display); font-size: 21px; font-weight: 600; text-transform: uppercase; }
+.part p { color: var(--muted); font-size: 15px; }
+.part .hw { font: 12px var(--mono); color: var(--fg); grid-column: 2; }
+.part a { font: 13px var(--mono); grid-column: 3; grid-row: 1; }
+@media (max-width: 640px) {
+  .part { grid-template-columns: 1fr; }
+  .part .hw, .part a { grid-column: 1; grid-row: auto; }
+}
+
+/* contact */
+.contact { border-top: 2px solid var(--fg); padding-top: 28px; display: grid; gap: 18px; }
+.contact h2 { font-size: clamp(34px, 6vw, 56px); font-weight: 800; text-transform: uppercase; }
+.lines { display: grid; grid-template-columns: max-content 1fr; gap: 8px 18px; font-size: 15px; }
+.lines dd { margin: 0; display: flex; flex-wrap: wrap; gap: 10px; align-items: center; min-width: 0; overflow-wrap: anywhere; }
+.copy { font: 12px var(--mono); padding: 3px 9px; border: 1px solid var(--line); border-radius: 4px; background: var(--surface); color: var(--fg); cursor: pointer; }
+.copy:focus-visible { outline: 2px solid var(--leaf); }
+footer { font: 12px var(--mono); color: var(--muted); }
+</style>
+</head>
+<body>
+
+
+<div class="wrap">
+  <header>
+    <div class="who">
+      <span class="label">Fredo · Developer · Davao del Norte, PH</span>
+      <span class="avail">Open to freelance work</span>
+    </div>
+    <h1>I build machines that <em>see, weigh and sort</em>, and the systems that run the business around them.</h1>
+    <p class="lede">Python and Django developer working across computer vision, IoT hardware and web systems. I've shipped a banana grading machine for export packing, a payroll system for a company of 600+ employees, and several sensor builds on Arduino and ESP boards.</p>
+    <div class="cta">
+      <a class="btn primary" href="#contact">Start a project</a>
+      <a class="btn" href="https://github.com/fredoBoss" target="_blank" rel="noopener">GitHub · fredoBoss</a>
+    </div>
+  </header>
+
+  <section id="services">
+    <div class="sechead">
+      <span class="label">What I can do for you</span>
+      <h2>Services</h2>
+    </div>
+    <div class="services">
+      <div class="svc">
+        <h3>Computer vision &amp; automation</h3>
+        <p>Object detection and classification from a camera feed, connected to motors, gates or a dashboard. Good for sorting, counting, inspection and OCR.</p>
+        <div class="tools">YOLOv8 / YOLO11 · OpenCV · EasyOCR · PyQt5</div>
+      </div>
+      <div class="svc">
+        <h3>IoT &amp; embedded</h3>
+        <p>Sensor nodes, controllers and displays that log data to the cloud or drive hardware. From prototype wiring to calibrated, tested firmware.</p>
+        <div class="tools">Arduino · ESP32 / ESP8266 · Orange Pi · Firebase</div>
+      </div>
+      <div class="svc">
+        <h3>Web &amp; business systems</h3>
+        <p>Dashboards, admin panels and internal tools with logins, roles, reports and PDF export. Includes HR and payroll systems built for real operations.</p>
+        <div class="tools">Django · PHP · Node / TypeScript · MySQL · Tailwind</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="work">
+    <div class="sechead">
+      <span class="label">Selected projects</span>
+      <h2>Work</h2>
+    </div>
+    <div class="plist">
+
+      <article class="project feature">
+        <div class="pbody">
+          <div class="ptop"><h3>Gradifier</h3><span class="status done">Capstone · built</span></div>
+          <p>An automated banana grading and sorting machine with its own management web app. A camera classifies each banana hand into an export grade, and the machine drops it into the matching bin while the dashboard tracks every batch by farm.</p>
+          <dl class="spec">
+            <dt>Vision</dt><dd>YOLOv8 segmentation, PyQt5 operator app with threaded camera and serial pipeline</dd>
+            <dt>Hardware</dt><dd>Arduino Mega driving the conveyor and 6 servo drop gates; ESP8266 weight node reporting to Firebase</dd>
+            <dt>Web app</dt><dd>PHP + MySQL progressive web app with live data over SSE, Chart.js analytics, PDF reports, installable offline</dd>
+            <dt>Grades</dt><dd><div class="grades"><span>25BCP</span><span>30BCP</span><span>33BCP</span><span>30TR</span><span>IF36TR</span><span>IF38TR</span></div></dd>
+          </dl>
+          <div class="links">
+            <a href="https://github.com/fredoBoss/BananaSort" target="_blank" rel="noopener">Machine code ↗</a>
+            <a href="https://github.com/fredoBoss/gradifier-web" target="_blank" rel="noopener">Web app ↗</a>
+            <a href="https://github.com/fredoBoss/gradifier" target="_blank" rel="noopener">Node/TS version ↗</a>
+          </div>
+        </div>
+        <figure>
+          <img src="assets/gradifier-model.jpg" alt="3D model of the Gradifier sorting table: a round turntable with eight trays, driven by a motor, beside a camera mount">
+          <figcaption>Design model of the rotating sort table</figcaption>
+        </figure>
+      </article>
+
+      <article class="project">
+        <div class="pbody">
+          <div class="ptop"><h3>RoboSort</h3><span class="status">In progress</span></div>
+          <p>A rover that drives itself, picks up trash with an arm, and sorts it into biodegradable and non-biodegradable bins.</p>
+          <dl class="spec">
+            <dt>Vision</dt><dd>YOLO model on an Orange Pi One, optimized to run on a 512 MB ARM board</dd>
+            <dt>Control</dt><dd>Arduino Mega running 4 drive motors, 4 ultrasonic sensors for obstacle avoidance, arm servos, conveyor and sort gate</dd>
+            <dt>Link</dt><dd>Classification sent from the Pi to the Arduino over serial</dd>
+          </dl>
+          <div class="links"><a href="https://github.com/fredoBoss/RoboSort" target="_blank" rel="noopener">Code ↗</a></div>
+        </div>
+      </article>
+
+      <article class="project">
+        <div class="pbody">
+          <div class="ptop"><h3>Company HRIS &amp; Payroll</h3><span class="status private">Private · in production</span></div>
+          <p>A custom HR information system with a payroll module, built and maintained as the sole developer for a regional manufacturer with over 600 employees. I handled development, deployment, ongoing maintenance and security.</p>
+          <dl class="spec">
+            <dt>Stack</dt><dd>Django · MySQL</dd>
+            <dt>Code</dt><dd>Private to the employer. Happy to walk through the architecture on a call.</dd>
+          </dl>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <section id="builds">
+    <div class="sechead">
+      <span class="label">Smaller builds</span>
+      <h2>Parts bin</h2>
+    </div>
+    <div class="parts">
+      <div class="part">
+        <strong>Air Quality</strong>
+        <p>Indoor air monitor that converts MQ-135 readings to CO₂ ppm and rates air from excellent to poor, with automatic daily recalibration.</p>
+        <span class="hw">ESP32 · MQ-135 · I2C LCD</span>
+        <a href="https://github.com/fredoBoss/AirQuality" target="_blank" rel="noopener">Code ↗</a>
+      </div>
+      <div class="part">
+        <strong>Solar Vendo</strong>
+        <p>Solar-powered phone charging station that detects a phone by weight and light sensor and runs a timed charging session.</p>
+        <span class="hw">Arduino · HX711 load cell · LDR · relay</span>
+        <a href="https://github.com/fredoBoss/SolarVendo" target="_blank" rel="noopener">Code ↗</a>
+      </div>
+      <div class="part">
+        <strong>Fruits Box</strong>
+        <p>Temperature and humidity logger for fruit storage, showing live readings on serial and a 20×4 display and flagging failed reads.</p>
+        <span class="hw">Arduino Nano · DHT11 · I2C LCD</span>
+        <a href="https://github.com/fredoBoss/FruitsBox" target="_blank" rel="noopener">Code ↗</a>
+      </div>
+      <div class="part">
+        <strong>Dynamic Weight</strong>
+        <p>Five-plate weighing and sorting rig with load-cell calibration saved to EEPROM and servo-driven plates.</p>
+        <span class="hw">Arduino Mega · HX711 · servos · ultrasonic</span>
+        <a href="https://github.com/fredoBoss/dynamic-wt" target="_blank" rel="noopener">Code ↗</a>
+      </div>
+      <div class="part">
+        <strong>ESP Touch LCD</strong>
+        <p>Touchscreen interface experiments on a 3.5" ESP32 display board.</p>
+        <span class="hw">ESP32-3248S035 · LovyanGFX</span>
+        <a href="https://github.com/fredoBoss/esp-lcd" target="_blank" rel="noopener">Code ↗</a>
+      </div>
+      <div class="part">
+        <strong>Live Text Reader</strong>
+        <p>Reads text and numbers from a webcam feed in real time, with image preprocessing for better accuracy.</p>
+        <span class="hw">Python · EasyOCR · OpenCV</span>
+        <a href="https://github.com/fredoBoss/text_Recognation_Python" target="_blank" rel="noopener">Code ↗</a>
+      </div>
+      <div class="part">
+        <strong>SudoSolve</strong>
+        <p>Desktop Sudoku app with a clean multi-screen interface.</p>
+        <span class="hw">Python · Flet</span>
+        <a href="https://github.com/fredoBoss/SudoSolve" target="_blank" rel="noopener">Code ↗</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact" id="contact">
+    <h2>Have a machine or a process to automate?</h2>
+    <p class="lede">Tell me what you need to detect, measure, track or report. I work remotely, or on site around the Davao Region.</p>
+    <dl class="lines">
+      <dt class="label">Email</dt>
+      <dd><span id="email">apvitangcor@gmail.com</span><button class="copy" id="copyEmail" type="button">Copy</button></dd>
+      <dt class="label">GitHub</dt>
+      <dd><a href="https://github.com/fredoBoss" target="_blank" rel="noopener">github.com/fredoBoss</a></dd>
+      <dt class="label">Based in</dt>
+      <dd>Davao del Norte, Philippines · UTC+8</dd>
+    </dl>
+  </section>
+
+  <footer>© 2026 Fredo</footer>
+</div>
+
+<script>
+document.getElementById('copyEmail').addEventListener('click', function () {
+  var btn = this, el = document.getElementById('email');
+  function done() { btn.textContent = 'Copied'; setTimeout(function () { btn.textContent = 'Copy'; }, 1600); }
+  function fallback() { var r = document.createRange(); r.selectNodeContents(el); var s = getSelection(); s.removeAllRanges(); s.addRange(r); btn.textContent = 'Selected'; }
+  try { navigator.clipboard.writeText(el.textContent).then(done, fallback); } catch (e) { fallback(); }
+});
+</script>
+
+</body>
+</html>
